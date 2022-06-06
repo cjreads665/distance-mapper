@@ -1,15 +1,16 @@
 import { useState } from 'react'
 import logo from './images/logo.png'
 import './App.css'
-import {useJsApiLoader,GoogleMap} from '@react-google-maps/api'
+import Map from './Map/Map'
+import {geoCoding} from './api/api'
+import axios from 'axios'
 function App() {
-  const [count, setCount] = useState(0)
-  const {isLoaded} = useJsApiLoader({
-    key: import.meta.env.VITE_GOOGLE_MAPS_API_KEY
-  })
-  
-  if(!isLoaded) return 'loading...'
-  var map = new Microsoft.Maps.Map('#myMap');
+  let [from,setFrom] = useState('')
+
+  const fetchData =async()=> {
+    let {data} = await axios.get(geoCoding(from))
+    console.log(data.features);
+  }
   return (
     <div className="App min-h-screen px-4 py-2 font-['Work_Sans']  ">
       <header className='flex flex-col justify-between h-32 border border-2 '>
@@ -22,7 +23,10 @@ function App() {
     <form action="" className='flex flex-col'>
       <div className='flex flex-col'>
       <label htmlFor="origin">Origin</label>
-      <input type="text" className='border-1 border border-black' />
+      <input type="text" className='border-1 border border-black' onChange={(e)=>{
+        setFrom(e.target.value)
+        fetchData()
+      }} value={from} />
       </div>
       <div className='flex flex-col'>
       <label htmlFor="destination">Destination</label>
@@ -35,8 +39,8 @@ function App() {
     </div>
   
       </section>
-      <div className='h-[10rem] w-full border border-1 border-black'>
-      <div id="myMap" className='h-full w-full'></div>
+      <div className='h-[20rem] w-full border border-1 border-black'>
+      <Map></Map>
       </div>
     </div>
   )

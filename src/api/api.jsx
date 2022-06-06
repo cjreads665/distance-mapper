@@ -1,0 +1,1 @@
+export const geoCoding =(search)=> `https://api.mapbox.com/geocoding/v5/mapbox.places/${search}.json?proximity=ip&types=place%2Cpostcode%2Caddress&access_token=pk.eyJ1IjoiY2pyZWFkczY2NSIsImEiOiJjbDN6bmF3ZnQwMDBjM2NvNjdleXVqZDNqIn0.IRNYoQWdg0Wc2K8jQ2ceEA`
