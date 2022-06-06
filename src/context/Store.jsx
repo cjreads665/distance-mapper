@@ -4,10 +4,16 @@ const Store = () => {
     let [from,setFrom] = useState('')
     let [fromList,setFromList] = useState('')
     let [fromCenter,setFromCenter] = useState('')
+
+    let [destination,setDestination] = useState('')
+    let [destinationList,setDestinationList] = useState('')
+    let [destinationCenter,setDestinationCenter] = useState('')
+
   return {
 from,setFrom,
     fromList,setFromList,
-    fromCenter,setFromCenter
+    fromCenter,setFromCenter,
+    destination,setDestination, destinationList,setDestinationList, destinationCenter,setDestinationCenter
   }
 }
 
