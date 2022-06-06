@@ -3,14 +3,8 @@ import logo from './images/logo.png'
 import './App.css'
 import Map from './Map/Map'
 import {geoCoding} from './api/api'
-import axios from 'axios'
+import Origin from './Origin/Origin'
 function App() {
-  let [from,setFrom] = useState('')
-
-  const fetchData =async()=> {
-    let {data} = await axios.get(geoCoding(from))
-    console.log(data.features);
-  }
   return (
     <div className="App min-h-screen px-4 py-2 font-['Work_Sans']  ">
       <header className='flex flex-col justify-between h-32 border border-2 '>
@@ -21,13 +15,7 @@ function App() {
       </header>
       <section className='flex'>
     <form action="" className='flex flex-col'>
-      <div className='flex flex-col'>
-      <label htmlFor="origin">Origin</label>
-      <input type="text" className='border-1 border border-black' onChange={(e)=>{
-        setFrom(e.target.value)
-        fetchData()
-      }} value={from} />
-      </div>
+     <Origin/>
       <div className='flex flex-col'>
       <label htmlFor="destination">Destination</label>
       <input type="text" name="destination" id="destination" className='border-1 border border-black' />
