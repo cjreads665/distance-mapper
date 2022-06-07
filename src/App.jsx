@@ -18,7 +18,7 @@ function App() {
         <nav className='flex'>
           <img src={logo} alt="graviti-logo" />
         </nav>
-        <h1 className='text-center text-[#1B31A8]'>Let's calculate distance from MapBox</h1>
+        <h1 className='text-center text-[#1B31A8]'>Let's calculate <span className='font-bold'>distance</span> from MapBox</h1>
       </header>
     <section className='flex flex-col lg:flex-row lg:justify-center lg:px-32 mt-8'>
     <form className='flex flex-col lg:w-[50%] lg:justify-center lg:px-32'>
@@ -27,7 +27,7 @@ function App() {
     
     <p>Total distance : <span className='font-bold text-[#1B31A8] text-5xl'>{calDistance}</span> km</p> <br/>
     {
-      distance!==0? <p className='text-sm'>The distance between {from} and {destination} is {calDistance} kms.</p> : ''
+      distance!==0? <p className='text-sm'>The distance between <span className='font-bold'>{from}</span> and <span className='font-bold'>{destination}</span> is <span className='font-bold'> {calDistance} kms.</span></p> : ''
     }
     </form>
     <div className='self-center '>
