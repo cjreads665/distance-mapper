@@ -97,7 +97,7 @@ map.current.on('load', () => {
   // this is where the code from the next step will go
 });
 
-    },[start]);
+    },[start,end]);
   return (
         <div ref={mapContainer} className="map-container w-full h-full" />
  

@@ -9,20 +9,24 @@ import Button from './Button'
 import useStore from './context/useStore'
 function App() {
   let {distance} = useStore()
+  let calDistance = Math.floor(distance/1000)
   return (
     <div className="App min-h-screen px-4 py-2 font-['Work_Sans']  ">
-      <header className='flex flex-col justify-between h-32'>
+      <header className='flex flex-col justify-between h-32 lg:px-32 lg:pt-12'>
         <nav className='flex'>
           <img src={logo} alt="graviti-logo" />
         </nav>
         <h1 className='text-center text-[#1B31A8]'>Let's calculate distance from MapBox</h1>
       </header>
-    <section className='flex flex-col lg:flex-row lg:justify-around lg:px-32'>
+    <section className='flex flex-col lg:flex-row lg:justify-center lg:px-32 mt-8'>
     <form className='flex flex-col lg:w-[50%] lg:justify-center lg:px-32'>
      <Origin/>
     <Destination/>
     
-    <p>Total distance : <span className='font-bold'>{distance}</span> km</p>
+    <p>Total distance : <span className='font-bold text-[#1B31A8] text-5xl'>{calDistance}</span> km</p> <br/>
+    {
+      distance!==0? <p className='text-sm'>The distance between Mumbai and Delhi is {calDistance} kms.</p> : ''
+    }
     </form>
     <div className='self-center '>
     <Button/>

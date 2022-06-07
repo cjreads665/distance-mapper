@@ -23,7 +23,9 @@ const FormComponent = ({label,input,setInput,list,setList,setAxis,open,setOpen})
           setAxis(obj.center)
           setOpen(false)
           setInput(obj.place_name)
-        }} >{obj.place_name}</li>
+        }} 
+        className='cursor-pointer'
+        >{obj.place_name}</li>
       })
     }
     </ul>
