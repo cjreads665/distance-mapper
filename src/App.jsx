@@ -21,7 +21,7 @@ function App() {
         <h1 className='text-center text-[#1B31A8]'>Let's calculate <span className='font-bold'>distance</span> from MapBox</h1>
       </header>
     <section className='flex flex-col lg:flex-row lg:justify-center lg:px-32 mt-8'>
-    <form className='flex flex-col lg:w-[50%] lg:justify-center lg:px-32'>
+    <form className='flex flex-col lg:w-[50%] lg:justify-center lg:px-28'>
      <Origin/>
     <Destination/>
     
