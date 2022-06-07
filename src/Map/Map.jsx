@@ -2,6 +2,8 @@ import React,{ useRef, useEffect, useState } from 'react'
 import 'mapbox-gl/dist/mapbox-gl.css';
 import mapboxgl from 'mapbox-gl'
 import useStore from '../context/useStore';
+import toast from 'react-hot-toast';
+
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2pyZWFkczY2NSIsImEiOiJjbDN6bmF3ZnQwMDBjM2NvNjdleXVqZDNqIn0.IRNYoQWdg0Wc2K8jQ2ceEA';
 
 const Map = () => {
@@ -68,7 +70,15 @@ map.current.on('load', () => {
   // make an initial directions request that
   // starts and ends at the same location
   if(!start) return;
-  getRoute(start);
+  toast.promise(
+    getRoute(start),
+     {
+       loading: 'Fetching Route...',
+       success: <b>Fetched successfully!</b>,
+       error: <b>Total distance between places cannot exceed 10000km</b>,
+     }
+   );
+  
 
   // Add starting point to the map
   map.current.addLayer({

@@ -11,7 +11,8 @@
     "axios": "^0.27.2",
     "mapbox-gl": "^2.8.2",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "react-hot-toast": "^2.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",

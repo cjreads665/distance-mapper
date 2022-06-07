@@ -7,11 +7,13 @@ import Origin from './Origin/Origin'
 import Destination from './Destination/Destination'
 import Button from './Button'
 import useStore from './context/useStore'
+import { Toaster } from 'react-hot-toast';
 function App() {
-  let {distance} = useStore()
+  let {distance,from,destination} = useStore()
   let calDistance = Math.floor(distance/1000)
   return (
     <div className="App min-h-screen px-4 py-2 font-['Work_Sans']  ">
+      <div><Toaster/></div>
       <header className='flex flex-col justify-between h-32 lg:px-32 lg:pt-12'>
         <nav className='flex'>
           <img src={logo} alt="graviti-logo" />
@@ -25,7 +27,7 @@ function App() {
     
     <p>Total distance : <span className='font-bold text-[#1B31A8] text-5xl'>{calDistance}</span> km</p> <br/>
     {
-      distance!==0? <p className='text-sm'>The distance between Mumbai and Delhi is {calDistance} kms.</p> : ''
+      distance!==0? <p className='text-sm'>The distance between {from} and {destination} is {calDistance} kms.</p> : ''
     }
     </form>
     <div className='self-center '>
