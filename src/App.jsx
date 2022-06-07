@@ -11,25 +11,27 @@ function App() {
   let {distance} = useStore()
   return (
     <div className="App min-h-screen px-4 py-2 font-['Work_Sans']  ">
-      <header className='flex flex-col justify-between h-32 border border-2 '>
+      <header className='flex flex-col justify-between h-32'>
         <nav className='flex'>
           <img src={logo} alt="graviti-logo" />
         </nav>
         <h1 className='text-center text-[#1B31A8]'>Let's calculate distance from MapBox</h1>
       </header>
-      <section className='flex flex-col'>
-    <form className='flex flex-col h-[50rem]]'>
+    <section className='flex flex-col lg:flex-row lg:justify-around lg:px-32'>
+    <form className='flex flex-col lg:w-[50%] lg:justify-center lg:px-32'>
      <Origin/>
     <Destination/>
+    
+    <p>Total distance : <span className='font-bold'>{distance}</span> km</p>
     </form>
-    <div>
+    <div className='self-center '>
     <Button/>
     </div>
-    <p>Total distance : <span className='font-bold'>{distance}</span> km</p>
-      </section>
-      <div className='h-[20rem] w-full border border-1 border-black'>
+    <div className='h-[20rem] lg:h-[30rem] w-full lg:w-[30rem]'>
       <Map></Map>
       </div>
+      </section>
+      
     </div>
   )
 }
