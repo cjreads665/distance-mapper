@@ -20,7 +20,7 @@ const FormComponent = ({label,input,setInput,list,setList,setAxis,open,setOpen})
       list?.features?.map(obj=>{
         if(input==='') return;
         return <li onClick={()=>{
-          setAxis(obj)
+          setAxis(obj.center)
           setOpen(false)
           setInput(obj.place_name)
         }} >{obj.place_name}</li>
