@@ -2,9 +2,11 @@ import React from "react";
 import useStore from "./context/useStore";
 
 const Button = () => {
-  let { destinationCenter, fromCenter } = useStore();
+  let { destinationCenter, fromCenter,start, setStart,end, setEnd } = useStore();
   let handleSubmit = (e) => {
     console.log(destinationCenter, fromCenter);
+    setStart(fromCenter)
+    setEnd(destinationCenter)
   };
   return (
     <button
@@ -13,7 +15,7 @@ const Button = () => {
       onClick={handleSubmit}
       disabled={!destinationCenter || !fromCenter ? true : false}
     >
-      Default
+      Submit
     </button>
   );
 };

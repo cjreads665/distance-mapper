@@ -5,29 +5,24 @@ import useStore from '../context/useStore';
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2pyZWFkczY2NSIsImEiOiJjbDN6bmF3ZnQwMDBjM2NvNjdleXVqZDNqIn0.IRNYoQWdg0Wc2K8jQ2ceEA';
 
 const Map = () => {
-  let {fromCenter,destinationCenter} = useStore()
+  let {fromCenter,destinationCenter,lng,lat,start,end} = useStore()
 const mapContainer = useRef(null);
 const map = useRef(null);
-const [lng, setLng] = useState(88.363881);
-const [lat, setLat] = useState(22.572672);
-const [zoom, setZoom] = useState(9);
 
 useEffect(() => {
     map.current = new mapboxgl.Map({
     container: mapContainer.current,
     style: 'mapbox://styles/mapbox/streets-v11',
-    center: fromCenter||[lng,lat],
-    zoom: 4
+    center: start||[lng,lat],
+    zoom: 3
     });
-    console.log(MapboxDirections);
 
-    // create a function to make a directions request
-async function getRoute(end) {
-  // make a directions request using cycling profile
-  // an arbitrary start will always be the same
-  // only the end or destination will change
+
+async function getRoute() {
+  console.log(end);
+  console.log(start);
   const query = await fetch(
-    `https://api.mapbox.com/directions/v5/mapbox/cycling/${fromCenter[0]},${fromCenter[1]};${destinationCenter[0]},${destinationCenter[1]}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`,
+    `https://api.mapbox.com/directions/v5/mapbox/cycling/${start[0]},${start[1]};${end[0]},${end[1]}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`,
     { method: 'GET' }
   );
   const json = await query.json();
@@ -72,7 +67,7 @@ async function getRoute(end) {
 map.current.on('load', () => {
   // make an initial directions request that
   // starts and ends at the same location
-  getRoute(fromCenter);
+  getRoute(start);
 
   // Add starting point to the map
   map.current.addLayer({
@@ -88,7 +83,7 @@ map.current.on('load', () => {
             properties: {},
             geometry: {
               type: 'Point',
-              coordinates: fromCenter
+              coordinates: start
             }
           }
         ]
@@ -102,7 +97,7 @@ map.current.on('load', () => {
   // this is where the code from the next step will go
 });
 
-    },[fromCenter, destinationCenter]);
+    },[start]);
   return (
         <div ref={mapContainer} className="map-container w-full h-full" />
  
