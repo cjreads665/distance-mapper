@@ -11,14 +11,15 @@ const Store = () => {
     let [destination,setDestination] = useState('')
     let [destinationList,setDestinationList] = useState('')
     let [destinationCenter,setDestinationCenter] = useState('')
-
+    let [distance,setDistance] = useState(0)
   return {
 from,setFrom,
     fromList,setFromList,
     fromCenter,setFromCenter,
     destination,setDestination, destinationList,setDestinationList, destinationCenter,setDestinationCenter,
     lng,setLng,lat,setLat,
-    start, setStart,end, setEnd
+    start, setStart,end, setEnd,
+    distance,setDistance
   }
 }
 

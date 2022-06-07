@@ -8,9 +8,9 @@ const FormComponent = ({label,input,setInput,list,setList,setAxis,open,setOpen})
       };
       
   return (
-    <div className='flex flex-col relative'>
+    <div className='flex flex-col relative h-full justify-around'>
     <label htmlFor="origin">{label}</label>
-    <input type="text" className='border-1 border border-black' onChange={(e)=>{
+    <input type="text" className='border-1 border border-black rounded-md h-12 p-3 my-3' onChange={(e)=>{
       setInput(e.target.value)
       fetchData()
     setOpen(true)

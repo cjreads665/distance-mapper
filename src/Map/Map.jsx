@@ -5,7 +5,7 @@ import useStore from '../context/useStore';
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2pyZWFkczY2NSIsImEiOiJjbDN6bmF3ZnQwMDBjM2NvNjdleXVqZDNqIn0.IRNYoQWdg0Wc2K8jQ2ceEA';
 
 const Map = () => {
-  let {fromCenter,destinationCenter,lng,lat,start,end} = useStore()
+  let {fromCenter,destinationCenter,lng,lat,start,end,distance,setDistance} = useStore()
 const mapContainer = useRef(null);
 const map = useRef(null);
 
@@ -26,8 +26,8 @@ async function getRoute() {
     { method: 'GET' }
   );
   const json = await query.json();
-   
   const data = json.routes[0];
+  setDistance(data?.distance)
   const route = data?.geometry?.coordinates;
   const geojson = {
     type: 'Feature',
@@ -67,12 +67,12 @@ async function getRoute() {
 map.current.on('load', () => {
   // make an initial directions request that
   // starts and ends at the same location
+  if(!start) return;
   getRoute(start);
 
   // Add starting point to the map
   map.current.addLayer({
     id: 'point',
-    type: 'circle',
     source: {
       type: 'geojson',
       data: {
